@@ -52,7 +52,7 @@ curl --location --request POST 'http://localhost:8080/project/newDocument' \
  }
  '
  
- #6) eliminar un documento en base a un object id:
+ # 6) eliminar un documento en base a un object id:
  
  curl --location --request DELETE 'http://localhost:8080/project/deleteDocument?id=63a8aae850e86829b1b91192' \
 --header 'token: eyJhbGciOiJIUzUxMiJ9.eyJleHAiOjE2NzE5OTgzMjV9.vx6AectFIOtip25jRIRf-qhPrjrssGvTdrdF1K7LP6ItptIUYaf2Z_N31tQU_Bl7zPGpFOr-HH9de-_MOF8U9Q'
