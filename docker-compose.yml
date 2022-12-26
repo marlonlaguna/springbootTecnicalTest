@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+      mongo:
+        image: mongo:latest
+        restart: always
+        container_name: prueba-mongo
+        hostname: host-prueba
+        volumes:
+          - ./data:/data/db
+        environment:
+          MONGO_INITDB_ROOT_USERNAME: root
+          MONGO_INITDB_ROOT_PASSWORD: secret
+        ports:
+          - "27017:27017"
+      tomcat:
+         image: 'tomcat:10.0'
+         restart: on-failure:3
+         depends_on:
+          - mongo
+         ports:
+             - '8080:8080'
+         volumes:
+             - './tomcat-users.xml:/opt/bitnami/tomcat/conf/tomcat-users.xml:rw'
+             - './context.xml:/usr/local/tomcat/conf/Catalina/localhost/manager.xml:rw'
+             - './context.xml:/usr/local/tomcat/conf/Catalina/localhost/host-manager.xml:rw'
+             - './target/pruebaTecnica-0.0.1-SNAPSHOT.war:/usr/local/tomcat/webapps/project.war'
+             - './:/usr/local/tomcat/webapps/myproject'
+  
